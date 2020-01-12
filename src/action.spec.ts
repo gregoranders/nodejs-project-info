@@ -1,5 +1,5 @@
 
-import { clearTestEnvironment, setInput } from "./fixtures/testUtils";
+import { clearTestEnvironment, expectOutputError, setInput } from "./fixtures/testUtils";
 
 import { run as testSubject } from "./action";
 
@@ -36,13 +36,12 @@ describe("nodejs-project-info", () => {
   describe("version", () => {
 
     it("missing", async () => {
-      setInput("path", `${fixturesPath}/missing-version-package.json`);
-      return expect(testSubject()).resolves.toHaveCoreError(/Missing version/);
+      return expectOutputError(testSubject, `${fixturesPath}/missing-version-package.json`, /Missing version/);
     });
 
     it("invalid", async () => {
-      setInput("path", `${fixturesPath}/invalid-version-package.json`);
-      return expect(testSubject()).resolves.toHaveCoreError(/Invalid version a\.b\.c/);
+      // tslint:disable-next-line: max-line-length
+      return expectOutputError(testSubject, `${fixturesPath}/invalid-version-package.json`, /Invalid version a\.b\.c/);
     });
   });
 });

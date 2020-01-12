@@ -90,3 +90,8 @@ expect.extend({
   },
 });
 
+export const expectOutputError = (promise: () => Promise<void>, path: string, regex: RegExp) => {
+  setInput("path", `${path}`);
+  return expect(promise()).resolves.toHaveCoreError(regex);
+};
+
