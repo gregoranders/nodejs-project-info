@@ -23,8 +23,8 @@ describe("nodejs-project-info", () => {
     });
 
     it("invalid", async () => {
-      setInput("path", "true");
-      return expect(testSubject()).resolves.toHaveCoreError("ENOENT: no such file or directory, open 'true'");
+      setInput("path", "invalidfile");
+      return expect(testSubject()).resolves.toHaveCoreError("ENOENT: no such file or directory, open 'invalidfile'");
     });
   });
 
