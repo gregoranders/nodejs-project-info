@@ -1,0 +1,45 @@
+name: Development CI
+
+on:
+  push:
+    branches:
+      - development
+
+jobs:
+  build:
+
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        node-version: [12.x, 13.x]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: npm install
+      run: |
+        npm install
+      env:
+        CI: true
+    - name: npm run build
+      run: |
+        npm run build
+      env:
+        CI: true
+    - name: npm test
+      run: |
+        npm test
+      env:
+        CI: true
+    - name: code coverage
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        path-to-lcov: ./coverage/lcov.info
+      env:
+        CI: true

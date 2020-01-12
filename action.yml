@@ -1,0 +1,18 @@
+name: 'NodeJS Project Information'
+description: 'Provides project information based on package.json'
+author: 'Gregor Anders <gregor.ander@gmail.com>'
+inputs:
+  path:
+    description: 'Path to package.json'
+    required: false
+    default: './package.json'
+outputs:
+  context:
+    description: 'Serialized package.json'
+  name:
+    description: 'Project Name'
+  version:
+    description: 'Project Version'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'

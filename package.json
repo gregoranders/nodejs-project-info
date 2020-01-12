@@ -1,0 +1,79 @@
+{
+  "name": "nodejs-project-info",
+  "version": "0.0.1",
+  "description": "NodeJS Project Information",
+  "main": "./dist/index.js",
+  "scripts": {
+    "postinstall": "tsc webpack.conf.ts",
+    "clear": "rimraf ./node_modules ./dist ./coverage ./package-lock.json ./webpack.conf.js",
+    "prestart": "npm run build",
+    "start": "node ./dist/index.js",
+    "prebuild": "tslint --project ./",
+    "build": "webpack --config ./webpack.conf.js",
+    "pretest": "rimraf ./coverage",
+    "test": "jest",
+    "watch": "tsc -w --project ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gregoranders/nodejs-project-info.git"
+  },
+  "keywords": [
+    "jest",
+    "typescript"
+  ],
+  "jest": {
+    "collectCoverage": true,
+    "coveragePathIgnorePatterns": [
+      "/fixtures/",
+      "/node_modules/"
+    ],
+    "coverageReporters": [
+      "html",
+      "lcovonly",
+      "text",
+      "text-summary"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "transform": {
+      "\\.ts$": "ts-jest"
+    },
+    "testRegex": "/src/.*\\.spec\\.ts$"
+  },
+  "author": "Gregor Anders <gregor.anders@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gregoranders/nodejs-project-info/issues"
+  },
+  "homepage": "https://gregoranders.github.io/nodejs-project-info/",
+  "dependencies": {
+    "@actions/core": "1.2.1",
+    "semver": "7.1.1"
+  },
+  "devDependencies": {
+    "@types/jest": "24.0.25",
+    "@types/node": "12.12.24",
+    "@types/semver": "6.2.0",
+    "@types/webpack": "4.41.2",
+    "jest": "24.9.0",
+    "rimraf": "3.0.0",
+    "ts-jest": "24.3.0",
+    "ts-loader": "6.2.1",
+    "ts-node": "8.6.1",
+    "tslint": "5.20.1",
+    "typescript": "3.7.4",
+    "webpack": "4.41.5",
+    "webpack-cli": "3.3.10"
+  }
+}
