@@ -1,6 +1,6 @@
 import * as core from "@actions/core";
 
-import { readFile } from "fs";
+import { readFile, realpath } from "fs";
 
 // tslint:disable-next-line: no-require-imports no-var-requires
 const valid = require("semver/functions/valid");
@@ -19,11 +19,24 @@ const readfile = async (path: string) => {
   });
 };
 
+const resolvePath = (path: string) => {
+  return new Promise<string>((resolve, reject) => {
+    realpath(path, (error: NodeJS.ErrnoException | null, resolved: string) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(resolved);
+      }
+    });
+  });
+};
+
 export const run = async () => {
   const path = core.getInput("path", { required: false }) || "./package.json";
 
   try {
-    const buffer = await readfile(path);
+    const resolved = await resolvePath(path);
+    const buffer = await readfile(resolved);
     const pkg = JSON.parse(buffer) as IPackageJSON;
 
     if (!pkg.version) {

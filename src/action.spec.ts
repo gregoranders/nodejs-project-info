@@ -24,7 +24,12 @@ describe("nodejs-project-info", () => {
 
     it("invalid", async () => {
       setInput("path", "invalidfile");
-      return expect(testSubject()).resolves.toHaveCoreError("ENOENT: no such file or directory, open 'invalidfile'");
+      return expect(testSubject()).resolves.toHaveCoreError(/^ENOENT: no such file or directory/);
+    });
+
+    it("directory", async () => {
+      setInput("path", "./node_modules");
+      return expect(testSubject()).resolves.toHaveCoreError(/^EISDIR: illegal operation on a directory/);
     });
   });
 
@@ -32,12 +37,12 @@ describe("nodejs-project-info", () => {
 
     it("missing", async () => {
       setInput("path", `${fixturesPath}/missing-version-package.json`);
-      return expect(testSubject()).resolves.toHaveCoreError("Missing version");
+      return expect(testSubject()).resolves.toHaveCoreError(/Missing version/);
     });
 
     it("invalid", async () => {
       setInput("path", `${fixturesPath}/invalid-version-package.json`);
-      return expect(testSubject()).resolves.toHaveCoreError("Invalid version a.b.c");
+      return expect(testSubject()).resolves.toHaveCoreError(/Invalid version a\.b\.c/);
     });
   });
 });
