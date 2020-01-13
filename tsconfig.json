@@ -5,6 +5,10 @@
     "sourceMap": true,
     "strict": true,
     "outDir": "./dist",
+    "typeRoots": [
+      "node_modules/@types",
+      "typings"
+    ]
   },
   "include": [
     "src/index.ts"

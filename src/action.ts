@@ -2,8 +2,9 @@ import * as core from "@actions/core";
 
 import { readFile, realpath } from "fs";
 
-// tslint:disable-next-line: no-require-imports no-var-requires
-const valid = require("semver/functions/valid");
+import * as SemVer from "semver/functions/valid";
+
+const valid = SemVer as (value: string) => boolean;
 
 import { IPackageJSON } from "./package-json";
 
