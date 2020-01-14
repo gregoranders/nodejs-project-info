@@ -8,8 +8,6 @@ Provides the the *name* and *version* and the content of **package.json** as out
 [![License][license-image]][license-url]
 [![Issues][issues-image]][issues-url]
 
-[![Release Build][release-build-image]][release-url]
-
 [![Master Build][master-build-image]][master-url] [![Master Coverage][master-coveralls-image]][master-coveralls-url] [![Master Version][master-version-image]][master-version-url]
 
 [![Development Build][development-build-image]][development-url] [![Test Coverage][development-coveralls-image]][development-coveralls-url] [![Development Version][development-version-image]][development-version-url]
@@ -111,7 +109,6 @@ npm run clear
 [issues-url]: https://github.com/gregoranders/nodejs-project-info/issues
 [issues-image]: https://img.shields.io/github/issues-raw/gregoranders/nodejs-project-info.svg
 
-[release-build-image]: https://github.com/gregoranders/nodejs-project-info/workflows/Release%20CI/badge.svg
 [master-build-image]: https://github.com/gregoranders/nodejs-project-info/workflows/Master%20CI/badge.svg
 [development-build-image]: https://github.com/gregoranders/nodejs-project-info/workflows/Development%20CI/badge.svg
 
