@@ -1,6 +1,6 @@
 {
   "name": "nodejs-project-info",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "NodeJS Project Information",
   "main": "./dist/index.js",
   "scripts": {
@@ -57,19 +57,19 @@
   },
   "homepage": "https://gregoranders.github.io/nodejs-project-info/",
   "dependencies": {
-    "@actions/core": "1.2.1",
-    "semver": "7.1.1"
+    "@actions/core": "1.2.3",
+    "semver": "7.1.3"
   },
   "devDependencies": {
-    "@types/jest": "24.0.25",
-    "@types/node": "12.12.24",
-    "@zeit/ncc": "0.21.0",
-    "jest": "24.9.0",
-    "rimraf": "3.0.0",
-    "ts-jest": "24.3.0",
-    "ts-loader": "6.2.1",
-    "ts-node": "8.6.2",
-    "tslint": "5.20.1",
-    "typescript": "3.7.4"
+    "@types/jest": "25.1.4",
+    "@types/node": "13.9.5",
+    "@zeit/ncc": "0.22.0",
+    "jest": "25.2.3",
+    "rimraf": "3.0.2",
+    "ts-jest": "25.2.1",
+    "ts-loader": "6.2.2",
+    "ts-node": "8.8.1",
+    "tslint": "6.1.0",
+    "typescript": "3.8.3"
   }
 }
