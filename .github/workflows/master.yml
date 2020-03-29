@@ -21,6 +21,11 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - name: nodejs project info
+      id: projectinfo
+      uses: gregoranders/nodejs-project-info@v0.0.2
+      env:
+        CI: true
     - name: npm install
       run: |
         npm install
@@ -52,3 +57,15 @@ jobs:
       with:
         coverageCommand: npm run test
         debug: true
+    - name: create release
+      id: createrelease
+      uses: gregoranders/nodejs-create-release@v0.0.3
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        PACKAGE_JSON: ${{ steps.projectinfo.outputs.context }}
+      with:
+        tag: v${{ steps.projectinfo.outputs.version }}
+        name: ${{ steps.projectinfo.outputs.name }} - ${{ steps.projectinfo.outputs.version }}
+        body: ${{ steps.projectinfo.outputs.name }} - ${{ steps.projectinfo.outputs.version }} Release
+        draft: false
+        target: ${{ github.ref }}

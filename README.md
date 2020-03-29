@@ -1,8 +1,10 @@
 # NodeJS Project Information
 
-## [GitHub Action](https://github.com/features/actions) written in [TypeScript](http://www.typescriptlang.org/).
+## [GitHub Action](https://github.com/features/actions) written in [TypeScript](http://www.typescriptlang.org/)
 
-Provides the the *name* and *version* and the content of **package.json** as outputs in a [GitHub Action](https://github.com/features/actions).
+### Provide package.json - [GitHub Action](https://github.com/features/actions)
+
+This action provides the *name* and *version* and the content of **package.json**, so your workflow can access it.
 
 [![Dependency Status][daviddm-image]][daviddm-url]
 [![License][license-image]][license-url]
@@ -17,21 +19,21 @@ Provides the the *name* and *version* and the content of **package.json** as out
 [![Main Language](https://img.shields.io/github/languages/top/gregoranders/nodejs-project-info)][code-metric-url] [![Languages](https://img.shields.io/github/languages/count/gregoranders/nodejs-project-info)][code-metric-url] [![Code Size](https://img.shields.io/github/languages/code-size/gregoranders/nodejs-project-info)][code-metric-url] [![Repo-Size](https://img.shields.io/github/repo-size/gregoranders/nodejs-project-info)][code-metric-url]
 
 
-### Usage
+## Usage
 ```YML
     ...
     - name: nodejs project information
       id: projectinfo
-      uses: gregoranders/nodejs-project-info
+      uses: gregoranders/nodejs-project-info@v0.0.3
     - name: create release action
       id: createrelease
-      uses: gregoranders/create-release
+      uses: gregoranders/nodejs-create-release@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         PACKAGE_JSON: ${{ steps.projectinfo.outputs.context }}
       with:
         tag: v${{ steps.projectinfo.outputs.version }}
-        name: ${{ steps.projectinfo.outputs.name }} - ${{ steps.projectinfo.outputs.version }}
+        name: ${{ steps.projectinfo.outputs.name }} - ${{ steps.projectinfo.outputs.version }} Release
         target: ${{ github.ref }}
     ...
 ```
@@ -51,6 +53,8 @@ outputs:
   version:
     description: 'Project Version'
 ```
+
+## Development
 
 ### Clone repository
 ```SH
