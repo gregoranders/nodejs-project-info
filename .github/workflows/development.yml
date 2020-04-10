@@ -21,6 +21,11 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - name: nodejs project info
+      id: projectinfo
+      uses: gregoranders/nodejs-project-info@master
+      env:
+        CI: true
     - name: npm install
       run: |
         npm install
