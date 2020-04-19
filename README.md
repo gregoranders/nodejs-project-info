@@ -24,10 +24,10 @@ This action provides the *name* and *version* and the content of **package.json*
     ...
     - name: nodejs project information
       id: projectinfo
-      uses: gregoranders/nodejs-project-info@v0.0.5
+      uses: gregoranders/nodejs-project-info@v0.0.6
     - name: create release action
       id: createrelease
-      uses: gregoranders/nodejs-create-release@v0.0.5
+      uses: gregoranders/nodejs-create-release@v0.0.6
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         PACKAGE_JSON: ${{ steps.projectinfo.outputs.context }}
