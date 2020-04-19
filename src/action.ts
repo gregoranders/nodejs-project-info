@@ -1,12 +1,12 @@
-import * as core from "@actions/core";
+import * as core from '@actions/core';
 
-import { readFile, realpath } from "fs";
+import { readFile, realpath } from 'fs';
 
-import * as SemVer from "semver/functions/valid";
+import * as SemVer from 'semver/functions/valid';
 
 const valid = SemVer as (value: string) => boolean;
 
-import { IPackageJSON } from "./package-json";
+import { PackageJSON } from './package-json';
 
 const readfile = async (path: string) => {
   return new Promise<string>((resolve, reject) => {
@@ -33,12 +33,12 @@ const resolvePath = (path: string) => {
 };
 
 export const run = async () => {
-  const path = core.getInput("path", { required: false }) || "./package.json";
+  const path = core.getInput('path', { required: false }) || './package.json';
 
   try {
     const resolved = await resolvePath(path);
     const buffer = await readfile(resolved);
-    const pkg = JSON.parse(buffer) as IPackageJSON;
+    const pkg = JSON.parse(buffer) as PackageJSON;
 
     if (!pkg.version) {
       throw Error(`Missing version`);
@@ -48,9 +48,9 @@ export const run = async () => {
       throw Error(`Invalid version ${pkg.version}`);
     }
 
-    core.setOutput("name", pkg.name);
-    core.setOutput("version", pkg.version);
-    core.setOutput("context", buffer);
+    core.setOutput('name', pkg.name);
+    core.setOutput('version', pkg.version);
+    core.setOutput('context', buffer);
   } catch (error) {
     core.setFailed(error);
   }

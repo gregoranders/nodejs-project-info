@@ -23,7 +23,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: nodejs project info
       id: projectinfo
-      uses: gregoranders/nodejs-project-info@v0.0.2
+      uses: gregoranders/nodejs-project-info@master
       env:
         CI: true
     - name: npm install
@@ -59,7 +59,7 @@ jobs:
         debug: true
     - name: create release
       id: createrelease
-      uses: gregoranders/nodejs-create-release@v0.0.3
+      uses: gregoranders/nodejs-create-release@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         PACKAGE_JSON: ${{ steps.projectinfo.outputs.context }}
