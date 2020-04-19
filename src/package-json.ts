@@ -1,28 +1,27 @@
-export interface IPackageJSON {
+export interface PackageJSON {
+  readonly author?: string | Author;
 
-  readonly author?: string | IAuthor;
+  readonly bin?: string | BinMap;
 
-  readonly bin?: string | IBinMap;
-
-  readonly bugs?: string | IBugs;
+  readonly bugs?: string | Bugs;
 
   readonly bundledDependencies?: string[];
 
-  readonly config?: IConfig;
+  readonly config?: Config;
 
-  readonly contributors?: string[] | IAuthor[];
+  readonly contributors?: string[] | Author[];
 
   readonly cpu?: string[];
 
-  readonly dependencies?: IDependencyMap;
+  readonly dependencies?: DependencyMap;
 
   readonly description?: string;
 
-  readonly devDependencies?: IDependencyMap;
+  readonly devDependencies?: DependencyMap;
 
-  readonly directories?: IDirectories;
+  readonly directories?: Directories;
 
-  readonly engines?: IEngines;
+  readonly engines?: Engines;
 
   readonly files?: string[];
 
@@ -38,50 +37,50 @@ export interface IPackageJSON {
 
   readonly name: string;
 
-  readonly optionalDependencies?: IDependencyMap;
+  readonly optionalDependencies?: DependencyMap;
 
   readonly os?: string[];
 
-  readonly peerDependencies?: IDependencyMap;
+  readonly peerDependencies?: DependencyMap;
 
   readonly preferGlobal?: boolean;
 
   readonly private?: boolean;
 
-  readonly publishConfig?: IPublishConfig;
+  readonly publishConfig?: PublishConfig;
 
-  readonly repository?: string | IRepository;
+  readonly repository?: string | Repository;
 
-  readonly scripts?: IScriptsMap;
+  readonly scripts?: ScriptsMap;
 
   readonly version?: string;
 }
 
-export interface IAuthor {
+export interface Author {
   email?: string;
   homepage?: string;
   name: string;
 }
 
-export interface IBinMap {
+export interface BinMap {
   [commandName: string]: string;
 }
 
-export interface IBugs {
+export interface Bugs {
   email: string;
   url: string;
 }
 
-export interface IConfig {
+export interface Config {
   config?: object;
   name?: string;
 }
 
-export interface IDependencyMap {
+export interface DependencyMap {
   [dependencyName: string]: string;
 }
 
-export interface IDirectories {
+export interface Directories {
   bin?: string;
   doc?: string;
   example?: string;
@@ -89,20 +88,20 @@ export interface IDirectories {
   man?: string;
 }
 
-export interface IEngines {
+export interface Engines {
   node?: string;
   npm?: string;
 }
 
-export interface IPublishConfig {
+export interface PublishConfig {
   registry?: string;
 }
 
-export interface IRepository {
+export interface Repository {
   type: string;
   url: string;
 }
 
-export interface IScriptsMap {
+export interface ScriptsMap {
   [scriptName: string]: string;
 }
