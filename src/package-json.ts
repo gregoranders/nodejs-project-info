@@ -72,6 +72,7 @@ export interface Bugs {
 }
 
 export interface Config {
+  // eslint-disable-next-line @typescript-eslint/ban-types
   config?: object;
   name?: string;
 }
