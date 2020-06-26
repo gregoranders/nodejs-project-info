@@ -1,4 +1,4 @@
-import { clearTestEnvironment, expectOutputError, setInput } from './fixtures/testUtils';
+import { clearTestEnvironment, expectOutputError, setInput } from './fixtures/test-utils';
 
 import { run as testSubject } from './action';
 
@@ -32,10 +32,12 @@ describe('nodejs-project-info', () => {
 
   describe('version', () => {
     it('missing', async () => {
+      expect.assertions(1);
       return expectOutputError(testSubject, `${fixturesPath}/missing-version-package.json`, /Missing version/);
     });
 
     it('invalid', async () => {
+      expect.assertions(1);
       // tslint:disable-next-line: max-line-length
       return expectOutputError(testSubject, `${fixturesPath}/invalid-version-package.json`, /Invalid version a\.b\.c/);
     });
