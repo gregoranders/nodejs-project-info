@@ -7,65 +7,64 @@ on:
 
 jobs:
   build:
-
     runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-        node-version: [12.x, 13.x]
+        os: [ubuntu-latest]
+        node-version: [14.x]
 
     steps:
-    - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: nodejs project info
-      id: projectinfo
-      uses: gregoranders/nodejs-project-info@master
-      env:
-        CI: true
-    - name: npm install
-      run: |
-        npm install
-      env:
-        CI: true
-    - name: npm run build
-      run: |
-        npm run build
-      env:
-        CI: true
-    - name: npm test
-      run: |
-        npm test
-      env:
-        CI: true
-    - name: code coverage
-      uses: coverallsapp/github-action@master
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        path-to-lcov: ./coverage/lcov.info
-      env:
-        CI: true
-    - name: publish code coverage to code climate
-      if: matrix.os == 'ubuntu-latest'
-      uses: paambaati/codeclimate-action@v2.3.0
-      env:
-        CI: true
-        CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE }}
-      with:
-        coverageCommand: npm run test
-        debug: true
-    - name: create release
-      id: createrelease
-      uses: gregoranders/nodejs-create-release@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        PACKAGE_JSON: ${{ steps.projectinfo.outputs.context }}
-      with:
-        tag: v${{ steps.projectinfo.outputs.version }}
-        name: ${{ steps.projectinfo.outputs.name }} - ${{ steps.projectinfo.outputs.version }}
-        body: ${{ steps.projectinfo.outputs.name }} - ${{ steps.projectinfo.outputs.version }} Release
-        draft: false
-        target: ${{ github.ref }}
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: nodejs project info
+        id: projectinfo
+        uses: gregoranders/nodejs-project-info@master
+        env:
+          CI: true
+      - name: npm install
+        run: |
+          npm install
+        env:
+          CI: true
+      - name: npm run build
+        run: |
+          npm run build
+        env:
+          CI: true
+      - name: npm test
+        run: |
+          npm test
+        env:
+          CI: true
+      - name: code coverage
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: ./coverage/lcov.info
+        env:
+          CI: true
+      - name: publish code coverage to code climate
+        if: matrix.os == 'ubuntu-latest'
+        uses: paambaati/codeclimate-action@v2.3.0
+        env:
+          CI: true
+          CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE }}
+        with:
+          coverageCommand: npm run test
+          debug: true
+      - name: create release
+        id: createrelease
+        uses: gregoranders/nodejs-create-release@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PACKAGE_JSON: ${{ steps.projectinfo.outputs.context }}
+        with:
+          tag: v${{ steps.projectinfo.outputs.version }}
+          name: ${{ steps.projectinfo.outputs.name }} - ${{ steps.projectinfo.outputs.version }}
+          body: ${{ steps.projectinfo.outputs.name }} - ${{ steps.projectinfo.outputs.version }} Release
+          draft: false
+          target: ${{ github.ref }}

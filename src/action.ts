@@ -38,18 +38,18 @@ export const run = async () => {
   try {
     const resolved = await resolvePath(path);
     const buffer = await readfile(resolved);
-    const pkg = JSON.parse(buffer) as PackageJSON;
+    const package_ = JSON.parse(buffer) as PackageJSON;
 
-    if (!pkg.version) {
-      throw Error(`Missing version`);
+    if (!package_.version) {
+      throw new Error(`Missing version`);
     }
 
-    if (!valid(pkg.version)) {
-      throw Error(`Invalid version ${pkg.version}`);
+    if (!valid(package_.version)) {
+      throw new Error(`Invalid version ${package_.version}`);
     }
 
-    core.setOutput('name', pkg.name);
-    core.setOutput('version', pkg.version);
+    core.setOutput('name', package_.name);
+    core.setOutput('version', package_.version);
     core.setOutput('context', buffer);
   } catch (error) {
     core.setFailed(error);

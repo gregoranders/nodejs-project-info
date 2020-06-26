@@ -1,4 +1,4 @@
-import { clearTestEnvironment, expectOutputError, setInput } from './fixtures/testUtils';
+import { clearTestEnvironment, expectOutputError, setInput } from './fixtures/test-utils';
 
 import { run as testSubject } from './action';
 
@@ -10,32 +10,34 @@ describe('nodejs-project-info', () => {
   });
 
   describe('path', () => {
-    it('default', async () => {
+    it('should correctly resolve from default package.json location (project root)', async () => {
       return expect(testSubject()).resolves.toHaveCoreOutput('name', 'nodejs-project-info');
     });
 
-    it('valid', async () => {
+    it('should correctly resolve from custom package.json location (project root)', async () => {
       setInput('path', `${fixturesPath}/valid-package.json`);
       return expect(testSubject()).resolves.toHaveCoreOutput('version', '0.0.1');
     });
 
-    it('invalid', async () => {
+    it('should contain an error on invalid package.json', async () => {
       setInput('path', 'invalidfile');
       return expect(testSubject()).resolves.toHaveCoreError(/^ENOENT: no such file or directory/);
     });
 
-    it('directory', async () => {
+    it('should contain an error on path pointing to a directory', async () => {
       setInput('path', './node_modules');
       return expect(testSubject()).resolves.toHaveCoreError(/^EISDIR: illegal operation on a directory/);
     });
   });
 
   describe('version', () => {
-    it('missing', async () => {
+    it('should contain an error when `version` is missing', async () => {
+      expect.assertions(1);
       return expectOutputError(testSubject, `${fixturesPath}/missing-version-package.json`, /Missing version/);
     });
 
-    it('invalid', async () => {
+    it('should contain an error when `version` is not a valid SemVer', async () => {
+      expect.assertions(1);
       // tslint:disable-next-line: max-line-length
       return expectOutputError(testSubject, `${fixturesPath}/invalid-version-package.json`, /Invalid version a\.b\.c/);
     });
