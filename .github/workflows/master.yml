@@ -52,7 +52,7 @@ jobs:
         uses: paambaati/codeclimate-action@v2.3.0
         env:
           CI: true
-          CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE }}
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
           coverageCommand: npm run test
           debug: true
