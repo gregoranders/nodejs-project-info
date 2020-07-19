@@ -1,10 +1,10 @@
 {
   "name": "nodejs-project-info",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "NodeJS Project Information",
   "main": "./dist/index.js",
   "scripts": {
-    "clear": "rimraf ./node_modules ./dist ./coverage ./package-lock.json ./webpack.conf.js",
+    "clear": "rimraf ./node_modules ./dist ./test ./package-lock.json",
     "prestart": "npm run build",
     "start": "node ./dist/index.js",
     "prebuild": "tsc --noEmit --project ./ && eslint ./src/**/*.ts --quiet --fix",
@@ -12,7 +12,9 @@
     "pretest": "rimraf ./coverage",
     "test": "jest",
     "watch": "tsc -w --project ./",
-    "prepare": "tsc --noEmit --project ./ && eslint ./src/**/*.ts --quiet && npm test"
+    "prepare": "npm test && npm run build",
+    "codeclimate": "docker run --interactive --tty --rm --env CODECLIMATE_CODE=\"$PWD\" --volume \"$PWD\":/code --volume /var/run/docker.sock:/var/run/docker.sock --volume /tmp/cc:/tmp/cc codeclimate/codeclimate analyze",
+    "changelog": "changelog"
   },
   "repository": {
     "type": "git",
@@ -34,15 +36,28 @@
       "eslint --ext .ts ./src"
     ]
   },
+  "jest-html-reporter": {
+    "pageTitle": "nodejs-project-info",
+    "outputPath": "<rootDir>/test/index.html"
+  },
+  "jest-junit": {
+    "outputDirectory": "<rootDir>/test"
+  },
   "jest": {
     "collectCoverage": true,
-    "coveragePathIgnorePatterns": [
-      "/fixtures/",
-      "/node_modules/"
+    "coverageDirectory": "<rootDir>/test/coverage",
+    "collectCoverageFrom": [
+      "<rootDir>/src/**/*.ts",
+      "!<rootDir>/node_modules/**",
+      "!<rootDir>/dist/**",
+      "!<rootDir>/temp/**",
+      "!<rootDir>/test/**",
+      "!<rootDir>/src/**/index.ts",
+      "!<rootDir>/src/fixtures/**"
     ],
     "coverageReporters": [
-      "html",
       "lcovonly",
+      "html",
       "text",
       "text-summary"
     ],
@@ -56,7 +71,13 @@
     },
     "moduleFileExtensions": [
       "ts",
-      "js"
+      "js",
+      "json"
+    ],
+    "reporters": [
+      "jest-html-reporter",
+      "jest-spec-reporter",
+      "jest-junit"
     ],
     "transform": {
       "\\.ts$": "ts-jest"
@@ -74,24 +95,28 @@
     "semver": "7.3.2"
   },
   "devDependencies": {
-    "@types/jest": "26.0.3",
-    "@types/node": "14.0.14",
-    "@typescript-eslint/eslint-plugin": "3.4.0",
-    "@typescript-eslint/parser": "3.4.0",
+    "@types/jest": "26.0.5",
+    "@types/node": "14.0.23",
+    "@typescript-eslint/eslint-plugin": "3.6.1",
+    "@typescript-eslint/parser": "3.6.1",
     "@zeit/ncc": "0.22.3",
     "generate-changelog": "1.8.0",
-    "eslint": "7.3.1",
+    "eslint": "7.5.0",
     "eslint-config-prettier": "6.11.0",
-    "eslint-plugin-jest": "23.17.1",
+    "eslint-plugin-jest": "23.18.0",
     "eslint-plugin-prettier": "3.1.4",
-    "eslint-plugin-unicorn": "20.1.0",
+    "eslint-plugin-unicorn": "21.0.0",
     "husky": "4.2.5",
     "jest": "26.1.0",
+    "jest-cli": "26.1.0",
+    "jest-html-reporter": "3.1.3",
+    "jest-junit": "11.0.1",
+    "jest-spec-reporter": "1.0.14",
     "lint-staged": "10.2.11",
     "prettier": "2.0.5",
     "rimraf": "3.0.2",
-    "ts-jest": "26.1.1",
+    "ts-jest": "26.1.3",
     "ts-node": "8.10.2",
-    "typescript": "3.9.5"
+    "typescript": "3.9.7"
   }
 }

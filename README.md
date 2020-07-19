@@ -10,13 +10,14 @@ This action provides the _name_ and _version_ and the content of **package.json*
 [![License][license-image]][license-url]
 [![Issues][issues-image]][issues-url]
 
-[![Master Build][master-build-image]][master-url] [![Master Coverage][master-coveralls-image]][master-coveralls-url] [![Master Version][master-version-image]][master-version-url]
+[![Codacy Badge][codacy-imge]][codacy-url][![Code maintainability][code-maintainability-image]][code-maintainability-url] [![Code issues][code-issues-image]][code-issues-url] [![Code Technical Debt][code-tech-debt-image]][code-tech-debt-url]
 
-[![Development Build][development-build-image]][development-url] [![Test Coverage][development-coveralls-image]][development-coveralls-url] [![Development Version][development-version-image]][development-version-url]
+[![Main Language][language-image]][code-metric-url] [![Languages][languages-image]][code-metric-url] [![Code Size][code-size-image]][code-metric-url] [![Repo-Size][repo-size-image]][code-metric-url]
 
-[![Code maintainability][code-maintainability-image]][code-maintainability-url] [![Code issues][code-issues-image]][code-issues-url] [![Code Technical Debt][code-tech-debt-image]][code-tech-debt-url]
-
-[![Main Language](https://img.shields.io/github/languages/top/gregoranders/nodejs-project-info)][code-metric-url] [![Languages](https://img.shields.io/github/languages/count/gregoranders/nodejs-project-info)][code-metric-url] [![Code Size](https://img.shields.io/github/languages/code-size/gregoranders/nodejs-project-info)][code-metric-url] [![Repo-Size](https://img.shields.io/github/repo-size/gregoranders/nodejs-project-info)][code-metric-url]
+|                                                                  |                                                                            | [![Release][release-image]][release-url]                                     |
+| ---------------------------------------------------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| [![Master Build][master-build-image]][master-url]                | [![Master Coverage][master-coveralls-image]][master-coveralls-url]         | [![Master Version][master-version-image]][master-version-url]                |
+| [![Development Build][development-build-image]][development-url] | [![Test Coverage][development-coveralls-image]][development-coveralls-url] | [![Development Version][development-version-image]][development-version-url] |
 
 ## Usage
 
@@ -24,10 +25,10 @@ This action provides the _name_ and _version_ and the content of **package.json*
     ...
     - name: nodejs project information
       id: projectinfo
-      uses: gregoranders/nodejs-project-info@v0.0.7
+      uses: gregoranders/nodejs-project-info@v0.0.8
     - name: create release action
       id: createrelease
-      uses: gregoranders/nodejs-create-release@v0.0.7
+      uses: gregoranders/nodejs-create-release@v0.0.8
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         PACKAGE_JSON: ${{ steps.projectinfo.outputs.context }}
@@ -55,46 +56,6 @@ outputs:
     description: 'Project Version'
 ```
 
-## Development
-
-### Clone repository
-
-```SH
-git clone https://github.com/gregoranders/nodejs-project-info
-```
-
-### Install dependencies
-
-```SH
-npm install
-```
-
-### Build
-
-```SH
-npm run build
-```
-
-### Testing
-
-#### Test using [Jest](https://jestjs.io/)
-
-```SH
-npm test
-```
-
-### Run
-
-```SH
-npm start
-```
-
-### Clear
-
-```SH
-npm run clear
-```
-
 [release-url]: https://github.com/gregoranders/nodejs-project-info/releases
 [master-url]: https://github.com/gregoranders/nodejs-project-info/tree/master
 [development-url]: https://github.com/gregoranders/nodejs-project-info/tree/development
@@ -112,6 +73,8 @@ npm run clear
 [development-version-image]: https://img.shields.io/github/package-json/v/gregoranders/nodejs-project-info/development
 [issues-url]: https://github.com/gregoranders/nodejs-project-info/issues
 [issues-image]: https://img.shields.io/github/issues-raw/gregoranders/nodejs-project-info.svg
+[release-image]: https://img.shields.io/github/release/gregoranders/nodejs-project-info
+[release-build-image]: https://github.com/gregoranders/nodejs-project-info/workflows/Release%20CI/badge.svg
 [master-build-image]: https://github.com/gregoranders/nodejs-project-info/workflows/Master%20CI/badge.svg
 [development-build-image]: https://github.com/gregoranders/nodejs-project-info/workflows/Development%20CI/badge.svg
 [master-coveralls-url]: https://coveralls.io/github/gregoranders/nodejs-project-info?branch=master
@@ -124,3 +87,9 @@ npm run clear
 [code-issues-image]: https://img.shields.io/codeclimate/issues/gregoranders/nodejs-project-info
 [code-tech-debt-url]: https://codeclimate.com/github/gregoranders/nodejs-project-info/maintainability
 [code-tech-debt-image]: https://img.shields.io/codeclimate/tech-debt/gregoranders/nodejs-project-info
+[language-image]: https://img.shields.io/github/languages/top/gregoranders/nodejs-project-info
+[languages-image]: https://img.shields.io/github/languages/count/gregoranders/nodejs-project-info
+[code-size-image]: https://img.shields.io/github/languages/code-size/gregoranders/nodejs-project-info
+[repo-size-image]: https://img.shields.io/github/repo-size/gregoranders/nodejs-project-info
+[codacy-imge]: https://app.codacy.com/project/badge/Grade/ade2dc1495e942019cda4408f84ef8db
+[codacy-url]: https://www.codacy.com/manual/gregoranders/nodejs-project-info
