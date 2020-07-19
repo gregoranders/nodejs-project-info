@@ -1,0 +1,18 @@
+{
+  "recommendations": [
+    "coenraads.bracket-pair-colorizer",
+    "editorconfig.editorconfig",
+    "dbaeumer.vscode-eslint",
+    "orta.vscode-jest",
+    "pkief.material-icon-theme",
+    "marlosirapuan.nord-deep",
+    "eg2.vscode-npm-script",
+    "esbenp.prettier-vscode",
+    "rvest.vs-code-prettier-eslint",
+    "pflannery.vscode-versionlens",
+    "visualstudioexptteam.vscodeintellicode",
+    "ms-azuretools.vscode-docker",
+    "cschleiden.vscode-github-actions",
+    "github.vscode-pull-request-github"
+  ]
+}
