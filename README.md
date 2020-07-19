@@ -10,13 +10,12 @@ This action provides the _name_ and _version_ and the content of **package.json*
 [![License][license-image]][license-url]
 [![Issues][issues-image]][issues-url]
 
-[![Code maintainability][code-maintainability-image]][code-maintainability-url] [![Code issues][code-issues-image]][code-issues-url] [![Code Technical Debt][code-tech-debt-image]][code-tech-debt-url]
+[![Codacy Badge][codacy-imge]][codacy-url][![Code maintainability][code-maintainability-image]][code-maintainability-url] [![Code issues][code-issues-image]][code-issues-url] [![Code Technical Debt][code-tech-debt-image]][code-tech-debt-url]
 
 [![Main Language][language-image]][code-metric-url] [![Languages][languages-image]][code-metric-url] [![Code Size][code-size-image]][code-metric-url] [![Repo-Size][repo-size-image]][code-metric-url]
 
-| GitHub                                                           | Coveralls                                                                  |                                                                              |
-| ---------------------------------------------------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 |                                                                  |                                                                            | [![Release][release-image]][release-url]                                     |
+| ---------------------------------------------------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | [![Master Build][master-build-image]][master-url]                | [![Master Coverage][master-coveralls-image]][master-coveralls-url]         | [![Master Version][master-version-image]][master-version-url]                |
 | [![Development Build][development-build-image]][development-url] | [![Test Coverage][development-coveralls-image]][development-coveralls-url] | [![Development Version][development-version-image]][development-version-url] |
 
@@ -92,3 +91,5 @@ outputs:
 [languages-image]: https://img.shields.io/github/languages/count/gregoranders/nodejs-project-info
 [code-size-image]: https://img.shields.io/github/languages/code-size/gregoranders/nodejs-project-info
 [repo-size-image]: https://img.shields.io/github/repo-size/gregoranders/nodejs-project-info
+[codacy-imge]: https://app.codacy.com/project/badge/Grade/ade2dc1495e942019cda4408f84ef8db
+[codacy-url]: https://www.codacy.com/manual/gregoranders/nodejs-project-info
