@@ -18,8 +18,8 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-latest]
-        node-version: [14.x]
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        node-version: [12.x]
 
     steps:
       - uses: actions/checkout@v2
@@ -42,6 +42,7 @@ jobs:
         run: |
           npm test
       - name: code coverage
+        if: matrix.os == 'ubuntu-latest'
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -55,7 +56,14 @@ jobs:
           coverageCommand: npm run test
           coverageLocations: |
             ./test/coverage/lcov.info:lcov
+      - name: run codacy-coverage-reporter
+        if: matrix.os == 'ubuntu-latest'
+        uses: codacy/codacy-coverage-reporter-action@master
+        with:
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          coverage-reports: ./test/coverage/lcov.info
       - name: create release
+        if: matrix.os == 'ubuntu-latest'
         id: createrelease
         uses: gregoranders/nodejs-create-release@master
         env:
@@ -65,5 +73,5 @@ jobs:
           tag: v${{ steps.projectinfo.outputs.version }}
           name: ${{ steps.projectinfo.outputs.name }} - ${{ steps.projectinfo.outputs.version }}
           body: ${{ steps.projectinfo.outputs.name }} - ${{ steps.projectinfo.outputs.version }} Release
-          draft: false
+          draft: true
           target: ${{ github.ref }}
