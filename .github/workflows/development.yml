@@ -18,8 +18,8 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-latest]
-        node-version: [14.x]
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        node-version: [12.x]
 
     steps:
       - uses: actions/checkout@v2
@@ -55,3 +55,9 @@ jobs:
           coverageCommand: npm run test
           coverageLocations: |
             ./test/coverage/lcov.info:lcov
+      - name: run codacy-coverage-reporter
+        if: matrix.os == 'ubuntu-latest'
+        uses: codacy/codacy-coverage-reporter-action@master
+        with:
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          coverage-reports: ./test/coverage/lcov.info
