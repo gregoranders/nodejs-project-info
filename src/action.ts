@@ -10,6 +10,7 @@ import { PackageJSON } from './package-json';
 
 const readfile = async (path: string) => {
   return new Promise<string>((resolve, reject) => {
+    // eslint-disable-next-line unicorn/no-null
     readFile(path, (error: NodeJS.ErrnoException | null, buffer: Buffer) => {
       if (error) {
         reject(error);
@@ -22,6 +23,7 @@ const readfile = async (path: string) => {
 
 const resolvePath = (path: string) => {
   return new Promise<string>((resolve, reject) => {
+    // eslint-disable-next-line unicorn/no-null
     realpath(path, (error: NodeJS.ErrnoException | null, resolved: string) => {
       if (error) {
         reject(error);

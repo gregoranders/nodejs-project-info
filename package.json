@@ -1,6 +1,6 @@
 {
   "name": "nodejs-project-info",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "NodeJS Project Information",
   "main": "./dist/index.js",
   "scripts": {
@@ -97,8 +97,8 @@
   "devDependencies": {
     "@types/jest": "26.0.5",
     "@types/node": "14.0.23",
-    "@typescript-eslint/eslint-plugin": "3.6.1",
-    "@typescript-eslint/parser": "3.6.1",
+    "@typescript-eslint/eslint-plugin": "3.7.0",
+    "@typescript-eslint/parser": "3.7.0",
     "@zeit/ncc": "0.22.3",
     "generate-changelog": "1.8.0",
     "eslint": "7.5.0",
