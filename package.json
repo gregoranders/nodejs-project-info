@@ -91,7 +91,7 @@
   },
   "homepage": "https://gregoranders.github.io/nodejs-project-info/",
   "dependencies": {
-    "@actions/core": "1.2.4",
+    "@actions/core": "1.2.6",
     "semver": "7.3.2"
   },
   "devDependencies": {
