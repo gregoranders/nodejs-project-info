@@ -5,7 +5,8 @@
 ​
 | Version | Supported |
 | ------- | ------------------ |
-| 0.0.11 | :white_check_mark: |
+| 0.0.12 | :white_check_mark: |
+| 0.0.11 | :x: |
 | 0.0.10 | :x: |
 ​
 
