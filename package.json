@@ -1,6 +1,6 @@
 {
   "name": "nodejs-project-info",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "NodeJS Project Information",
   "main": "./dist/index.js",
   "scripts": {
