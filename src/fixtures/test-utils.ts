@@ -22,18 +22,18 @@ const actionsCoreMock = jest.mock('@actions/core', () => {
   };
 });
 
-const inputVars: { [key: string]: string } = {};
+const inputVariables: { [key: string]: string } = {};
 
 export const setInput = (name: string, value: string): void => {
-  const varName = `INPUT_${name.toUpperCase()}`;
-  inputVars[varName] = value;
-  process.env[varName] = value;
+  const variableName = `INPUT_${name.toUpperCase()}`;
+  inputVariables[variableName] = value;
+  process.env[variableName] = value;
 };
 
 export const clearTestEnvironment = (): void => {
-  Object.keys(inputVars).forEach((varName) => {
-    Reflect.deleteProperty(process.env, varName);
-    Reflect.deleteProperty(inputVars, varName);
+  Object.keys(inputVariables).forEach((variableName) => {
+    Reflect.deleteProperty(process.env, variableName);
+    Reflect.deleteProperty(inputVariables, variableName);
   });
   actionsCoreMock.clearAllMocks();
 };
