@@ -2,6 +2,10 @@
 
 ##### Chores
 
+* **docs:**
+  *  update README ([0a907ad9](https://github.com/gregoranders/nodejs-project-info/commit/0a907ad9c13a39b8d31b5ec4efa1d07d865c8edd))
+  *  update SECURITY ([34c6c965](https://github.com/gregoranders/nodejs-project-info/commit/34c6c965f7f018196da39298faf7c2d7afe178ff))
+  *  updated CHANGELOG ([8ba49bbd](https://github.com/gregoranders/nodejs-project-info/commit/8ba49bbd680353643b4fe60c214a2a345f70aaa2))
 * **release:**
   *  prepare next release ([2d14407c](https://github.com/gregoranders/nodejs-project-info/commit/2d14407c08ac8ae9c2f990f5fe67921ec9e9e5f4))
   *  bump version ([b886350d](https://github.com/gregoranders/nodejs-project-info/commit/b886350d4e54f4f8ca9ffc35427ccde5215676d7))
