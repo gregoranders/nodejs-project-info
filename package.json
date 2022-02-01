@@ -8,7 +8,7 @@
     "prestart": "npm run build",
     "start": "node ./dist/index.js",
     "prebuild": "tsc --noEmit --project ./ && eslint ./src/**/*.ts --quiet --fix",
-    "build": "ncc build ./src/index.ts -m -o ./dist/",
+    "build": "ncc build ./src/index.ts --external node:fs -m -o ./dist/",
     "pretest": "rimraf ./coverage",
     "test": "jest",
     "watch": "tsc -w --project ./",
