@@ -1,0 +1,69 @@
+name: Feature CI
+
+on:
+  push:
+    branches:
+      - feature/*
+
+env:
+  CI: true
+  GITHUB_BRANCH: ${{ github.ref }}
+  GITHUB_HEAD_REF: ${{ github.head_ref }}
+  GITHUB_BASE_REF: ${{ github.base_ref }}
+  GITHUB_COMMIT: ${{ github.sha }}
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        node-version: [16.x]
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: Use Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: nodejs project info
+        id: projectinfo
+        uses: gregoranders/nodejs-project-info@master
+      - name: npm install
+        run: |
+          npm install
+      - name: npm test
+        run: |
+          npm test
+      - name: npm run build
+        run: |
+          npm run build
+      - name: code coverage
+        if: matrix.os == 'ubuntu-latest'
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: ./test/coverage/lcov.info
+      - name: publish code coverage to code climate
+        if: matrix.os == 'ubuntu-latest'
+        uses: paambaati/codeclimate-action@v3.0.0
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+          coverageCommand: npm test
+          coverageLocations: |
+            ./test/coverage/lcov.info:lcov
+      - name: run codacy-coverage-reporter
+        if: matrix.os == 'ubuntu-latest'
+        uses: codacy/codacy-coverage-reporter-action@master
+        with:
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          coverage-reports: ./test/coverage/lcov.info
+      - name: Publish Unit Test Results
+        uses: EnricoMi/publish-unit-test-result-action/composite@v1
+        with:
+          check_name: Unit Test Results node${{ matrix.node-version }}-${{ matrix.os }}
+          files: test/junit.xml
