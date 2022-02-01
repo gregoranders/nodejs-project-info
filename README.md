@@ -6,7 +6,6 @@
 
 This action provides the _name_ and _version_ and the content of **package.json**, so your workflow can access it.
 
-[![Dependency Status][daviddm-image]][daviddm-url]
 [![License][license-image]][license-url]
 [![Issues][issues-image]][issues-url]
 
@@ -25,10 +24,10 @@ This action provides the _name_ and _version_ and the content of **package.json*
     ...
     - name: nodejs project information
       id: projectinfo
-      uses: gregoranders/nodejs-project-info@v0.0.12
+      uses: gregoranders/nodejs-project-info@v0.0.13
     - name: create release action
       id: createrelease
-      uses: gregoranders/nodejs-create-release@v0.0.12
+      uses: gregoranders/nodejs-create-release@v0.0.13
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         PACKAGE_JSON: ${{ steps.projectinfo.outputs.context }}
@@ -39,7 +38,7 @@ This action provides the _name_ and _version_ and the content of **package.json*
     ...
 ```
 
-#### Inputs/Outputs
+### Inputs/Outputs
 
 ```YML
 inputs:
@@ -63,8 +62,6 @@ outputs:
 [code-metric-url]: https://github.com/gregoranders/nodejs-project-info/search?l=TypeScript
 [travis-url]: https://travis-ci.org/gregoranders/nodejs-project-info
 [travis-image]: https://travis-ci.org/gregoranders/nodejs-project-info.svg?branch=master
-[daviddm-url]: https://david-dm.org/gregoranders/nodejs-project-info
-[daviddm-image]: https://david-dm.org/gregoranders/nodejs-project-info.svg?branch=master
 [license-url]: https://github.com/gregoranders/nodejs-project-info/blob/master/LICENSE
 [license-image]: https://img.shields.io/github/license/gregoranders/nodejs-project-info.svg
 [master-version-url]: https://github.com/gregoranders/nodejs-project-info/blob/master/package.json
