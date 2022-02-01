@@ -12,6 +12,10 @@
   },
   "conventionalCommits.scopes": [
     "vscode",
-    "dependencies"
+    "dependencies",
+    "workflows",
+    "tests",
+    "action",
+    "docs"
   ]
 }
