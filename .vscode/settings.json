@@ -9,5 +9,8 @@
   },
   "[typescript]": {
     "editor.formatOnSave": false
-  }
+  },
+  "conventionalCommits.scopes": [
+    "vscode"
+  ]
 }
