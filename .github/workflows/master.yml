@@ -62,6 +62,11 @@ jobs:
         with:
           project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
           coverage-reports: ./test/coverage/lcov.info
+      - name: Publish Unit Test Results
+        uses: EnricoMi/publish-unit-test-result-action/composite@v1
+        with:
+          check_name: Unit Test Results node${{ matrix.node-version }}-${{ matrix.os }}
+          files: test/junit.xml
       - name: create release
         if: matrix.os == 'ubuntu-latest'
         id: createrelease

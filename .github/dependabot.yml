@@ -1,5 +1,18 @@
 version: 2
 updates:
+
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+    labels:
+      - 'npm dependencies'
+    commit-message:
+      prefix: 'github-actions'
+    assignees:
+      - 'gregoranders'
+    target-branch: 'development'
+
   - package-ecosystem: 'npm'
     directory: '/'
     schedule:
