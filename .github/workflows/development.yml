@@ -29,7 +29,6 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
       - name: nodejs project info
         id: projectinfo
         uses: gregoranders/nodejs-project-info@master
@@ -43,6 +42,7 @@ jobs:
         run: |
           npm run build
       - name: code coverage
+        if: matrix.os == 'ubuntu-latest'
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
