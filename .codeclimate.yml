@@ -22,3 +22,5 @@ exclude_patterns:
   - '**/docs'
   - '**/node_modules/'
   - '**/fixtures'
+  - '**/.husky'
+  - '**/commitlint.config.js'
