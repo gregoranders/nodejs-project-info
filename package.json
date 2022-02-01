@@ -7,9 +7,9 @@
     "clear": "rimraf ./node_modules ./dist ./test ./package-lock.json",
     "prestart": "npm run build",
     "start": "node ./dist/index.js",
-    "prebuild": "tsc --noEmit --project ./ && eslint ./src/**/*.ts --quiet --fix",
+    "prebuild": "eslint ./src/**/*.ts --quiet --fix && tsc --noEmit --project ./",
     "build": "ncc build ./src/index.ts -m -o ./dist/",
-    "pretest": "rimraf ./coverage",
+    "pretest": "rimraf ./test",
     "test": "jest",
     "watch": "tsc -w --project ./",
     "prepare": "husky install",
@@ -89,8 +89,6 @@
     "semver": "7.3.5"
   },
   "devDependencies": {
-    "@types/jest": "27.4.0",
-    "@types/node": "14.14.16",
     "@typescript-eslint/eslint-plugin": "5.10.2",
     "@typescript-eslint/parser": "5.10.2",
     "@vercel/ncc": "0.33.1",
