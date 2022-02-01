@@ -1,10 +1,8 @@
 import * as core from '@actions/core';
 
-import { readFile, realpath } from 'fs';
+import { readFile, realpath } from 'node:fs';
 
-import * as SemVer from 'semver/functions/valid';
-
-const valid = SemVer as (value: string) => boolean;
+import { valid } from 'semver';
 
 import { PackageJSON } from './package-json';
 
