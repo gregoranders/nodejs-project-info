@@ -1,6 +1,5 @@
 {
   "recommendations": [
-    "coenraads.bracket-pair-colorizer",
     "editorconfig.editorconfig",
     "dbaeumer.vscode-eslint",
     "orta.vscode-jest",
