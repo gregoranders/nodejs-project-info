@@ -5,11 +5,10 @@
 ## Docker image sizes
 
 ```sh
-codeclimate/codeclimate              110MB
-codeclimate/codeclimate-eslint       1.25GB
-codeclimate/codeclimate-structure    5.16GB
-codeclimate/codeclimate-duplication  5.16GB
-codeclimate/codeclimate-tslint       559MB
+codeclimate/codeclimate              102MB
+codeclimate/codeclimate-eslint       495MB
+codeclimate/codeclimate-structure    5.63GB
+codeclimate/codeclimate-duplication  5.63GB
 codeclimate/codeclimate-editorconfig 74.1MB
 codeclimate/codeclimate-fixme        58.8MB
 codeclimate/codeclimate-git-legal    373MB
@@ -42,9 +41,13 @@ docker run \
   --volume /tmp/cc:/tmp/cc \
   codeclimate/codeclimate $@
 
-docker run --interactive --tty --rm --env CODECLIMATE_CODE=\"./\" --volume \"./\":/code --volume /var/run/docker.sock:/var/run/docker.sock --volume /tmp/cc:/tmp/cc codeclimate/codeclimate analyze
-
 # vim: tw=78 ft=sh ts=2 sw=2 sts=2 nu:
+```
+
+### CLI for code climate
+
+```sh
+docker run --interactive --tty --rm --env CODECLIMATE_CODE=\"./\" --volume \"./\":/code --volume /var/run/docker.sock:/var/run/docker.sock --volume /tmp/cc:/tmp/cc codeclimate/codeclimate analyze
 ```
 
 ### Install engines

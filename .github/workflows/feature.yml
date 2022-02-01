@@ -1,9 +1,9 @@
-name: Master CI
+name: Feature CI
 
 on:
   push:
     branches:
-      - master
+      - feature/*
 
 env:
   CI: true
@@ -67,16 +67,3 @@ jobs:
         with:
           check_name: Unit Test Results node${{ matrix.node-version }}-${{ matrix.os }}
           files: test/junit.xml
-      - name: create release
-        if: matrix.os == 'ubuntu-latest'
-        id: createrelease
-        uses: gregoranders/nodejs-create-release@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PACKAGE_JSON: ${{ steps.projectinfo.outputs.context }}
-        with:
-          tag: v${{ steps.projectinfo.outputs.version }}
-          name: ${{ steps.projectinfo.outputs.name }} - ${{ steps.projectinfo.outputs.version }}
-          body: ${{ steps.projectinfo.outputs.name }} - ${{ steps.projectinfo.outputs.version }} Release
-          draft: true
-          target: ${{ github.ref }}

@@ -1,10 +1,8 @@
 import * as core from '@actions/core';
 
-import { readFile, realpath } from 'fs';
+import { readFile, realpath } from 'node:fs';
 
-import * as SemVer from 'semver/functions/valid';
-
-const valid = SemVer as (value: string) => boolean;
+import { valid } from 'semver';
 
 import { PackageJSON } from './package-json';
 
@@ -53,7 +51,7 @@ export const run = async () => {
     core.setOutput('name', package_.name);
     core.setOutput('version', package_.version);
     core.setOutput('context', buffer);
-  } catch (error) {
+  } catch (error: Error | any) {
     core.setFailed(error);
   }
 };

@@ -31,10 +31,10 @@ export const setInput = (name: string, value: string): void => {
 };
 
 export const clearTestEnvironment = (): void => {
-  Object.keys(inputVariables).forEach((variableName) => {
+  for (const variableName of Object.keys(inputVariables)) {
     Reflect.deleteProperty(process.env, variableName);
     Reflect.deleteProperty(inputVariables, variableName);
-  });
+  }
   actionsCoreMock.clearAllMocks();
 };
 
@@ -42,7 +42,7 @@ expect.extend({
   // tslint:disable-next-line: object-literal-shorthand space-before-function-paren
   toHaveCoreError: function (recieved: jest.Mock, message: RegExp) {
     const error = setFailedMock.mock.calls.length > 0 ? (setFailedMock.mock.calls[0][0] as Error) : undefined;
-    const pass = error && error.message.match(message) ? true : false;
+    const pass = error && message.test(error.message) ? true : false;
     const options = {
       comment: 'Error.message equality',
       isNot: this.isNot,
