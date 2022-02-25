@@ -4,23 +4,26 @@
   "description": "NodeJS Project Information",
   "main": "./dist/index.js",
   "scripts": {
-    "clear": "rimraf ./node_modules ./dist ./test ./package-lock.json",
+    "clear": "rimraf ./node_modules ./package-lock.json",
     "prestart": "npm run build",
     "start": "node ./dist/index.js",
-    "prebuild": "eslint ./src/**/*.ts --quiet --fix && tsc --noEmit --project ./",
-    "build": "ncc build ./src/index.ts -m -o ./dist/",
-    "pretest": "rimraf ./test",
+    "prebuild": "eslint ./src/**/*.ts && tsc --noEmit --project ./",
+    "build": "cross-env NODE_ENV=production ncc build ./src/index.ts -m -o ./dist/",
+    "lint": "markdownlint --config .mdlrc . && remark --frail --rc-path .remarkrc-full.mjs .",
+    "pretest": "rimraf ./test/*",
     "test": "jest",
     "watch": "tsc -w --project ./",
     "prepare": "husky install",
-    "codeclimate": "docker run --interactive --rm --env CODECLIMATE_CODE=\"$PWD\" --volume \"$PWD\":/code --volume /var/run/docker.sock:/var/run/docker.sock --volume /tmp/cc:/tmp/cc codeclimate/codeclimate analyze",
-    "changelog": "changelog"
+    "changelog": "conventional-changelog -p conventionalcommits -i CHANGELOG.md -s",
+    "codeclimate": "docker run --interactive --rm --env CODECLIMATE_CODE=\"$PWD\" --volume \"$PWD\":/code --volume /var/run/docker.sock:/var/run/docker.sock --volume /tmp/cc:/tmp/cc codeclimate/codeclimate analyze"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gregoranders/nodejs-project-info.git"
   },
   "keywords": [
+    "github",
+    "action",
     "jest",
     "eslint",
     "typescript"
@@ -28,6 +31,9 @@
   "lint-staged": {
     "*.ts": [
       "eslint --ext .ts ./src"
+    ],
+    "*.md": [
+      "markdownlint --config .mdlrc"
     ]
   },
   "jest-html-reporter": {
@@ -95,6 +101,9 @@
     "@typescript-eslint/eslint-plugin": "5.12.1",
     "@typescript-eslint/parser": "5.12.1",
     "@vercel/ncc": "0.33.3",
+    "conventional-changelog-cli": "2.2.2",
+    "cross-env": "7.0.3",
+    "dictionary-en": "3.1.0",
     "eslint": "8.9.0",
     "eslint-config-prettier": "8.4.0",
     "eslint-plugin-jest": "26.1.1",
@@ -108,7 +117,37 @@
     "jest-junit": "13.0.0",
     "jest-spec-reporter": "1.0.17",
     "lint-staged": "12.3.4",
+    "markdownlint": "0.25.1",
+    "markdownlint-cli": "0.31.1",
     "prettier": "2.5.1",
+    "remark-cli": "10.0.1",
+    "remark-frontmatter": "4.0.1",
+    "remark-lint": "9.1.1",
+    "remark-lint-heading-whitespace": "1.0.0",
+    "remark-lint-list-item-indent": "3.1.1",
+    "remark-lint-no-dead-urls": "1.1.0",
+    "remark-lint-no-duplicate-headings": "3.1.1",
+    "remark-lint-write-good": "1.2.0",
+    "remark-preset-lint-consistent": "5.1.1",
+    "remark-preset-lint-markdown-style-guide": "5.1.2",
+    "remark-preset-lint-recommended": "6.1.2",
+    "remark-retext": "5.0.1",
+    "remark-validate-links": "11.0.2",
+    "retext-contractions": "5.2.0",
+    "retext-diacritics": "4.2.0",
+    "retext-english": "4.1.0",
+    "retext-equality": "6.6.0",
+    "retext-indefinite-article": "4.1.0",
+    "retext-passive": "4.2.0",
+    "retext-profanities": "7.2.0",
+    "retext-quotes": "5.2.0",
+    "retext-readability": "7.2.0",
+    "retext-redundant-acronyms": "4.3.0",
+    "retext-repeated-words": "4.2.0",
+    "retext-sentence-spacing": "5.2.0",
+    "retext-spell": "5.1.0",
+    "retext-syntax-urls": "3.1.2",
+    "retext-usage": "0.5.0",
     "rimraf": "3.0.2",
     "ts-jest": "27.1.3",
     "typescript": "4.5.5"

@@ -2,7 +2,7 @@ declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace jest {
     // tslint:disable-next-line: interface-name
-    interface Matchers<R, T> {
+    interface Matchers<R> {
       toHaveCoreError(message: RegExp): R;
       toHaveCoreOutput(key: string, value: string): R;
     }

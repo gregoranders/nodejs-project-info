@@ -1,0 +1,68 @@
+name: Release CI
+
+on:
+  release:
+    types:
+      - edited
+
+env:
+  CI: true
+  GITHUB_BRANCH: ${{ github.ref }}
+  GITHUB_HEAD_REF: ${{ github.head_ref }}
+  GITHUB_BASE_REF: ${{ github.base_ref }}
+  GITHUB_COMMIT: ${{ github.sha }}
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node-version: [16.x]
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: Use Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: 'https://registry.npmjs.org/'
+      - name: nodejs project information
+        id: projectinfo
+        uses: gregoranders/nodejs-project-info@master
+      - name: npm install
+        run: |
+          npm install
+      - name: npm test
+        run: |
+          npm test
+      - name: npm run build
+        run: |
+          npm run build
+      - uses: actions/setup-node@v2
+        with:
+          registry-url: 'https://npm.pkg.github.com'
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: upload index.js
+        id: uploadmain
+        uses: gregoranders/nodejs-upload-asset@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          id: ${{ steps.createrelease.outputs.id }}
+          path: dist/index.js
+          name: index.js
+      - name: upload index.d.ts
+        id: uploadtype
+        uses: gregoranders/nodejs-upload-asset@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          id: ${{ steps.createrelease.outputs.id }}
+          path: dist/index.d.ts
+          name: index.d.ts

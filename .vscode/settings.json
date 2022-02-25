@@ -9,13 +9,5 @@
   },
   "[typescript]": {
     "editor.formatOnSave": false
-  },
-  "conventionalCommits.scopes": [
-    "vscode",
-    "dependencies",
-    "workflows",
-    "tests",
-    "action",
-    "docs"
-  ]
+  }
 }

@@ -1,10 +1,9 @@
 {
   "root": true,
   "parser": "@typescript-eslint/parser",
-  "plugins": ["prettier", "jest", "unicorn", "@typescript-eslint"],
+  "plugins": ["prettier", "jest", "@typescript-eslint"],
   "extends": [
     "plugin:jest/recommended",
-    "plugin:unicorn/recommended",
     "plugin:prettier/recommended"
   ],
   "parserOptions": {
@@ -19,6 +18,9 @@
     "jest": true
   },
   "rules": {
+    "quotes": [
+      2, "single", { "avoidEscape": true }
+    ],
     "@typescript-eslint/explicit-module-boundary-types": "off"
   },
   "settings": {}

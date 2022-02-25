@@ -41,7 +41,7 @@ export const run = async () => {
     const package_ = JSON.parse(buffer) as PackageJSON;
 
     if (!package_.version) {
-      throw new Error(`Missing version`);
+      throw new Error('Missing version');
     }
 
     if (!valid(package_.version)) {
