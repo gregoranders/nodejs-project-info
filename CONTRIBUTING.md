@@ -1,7 +1,9 @@
 # Contributing Guide
 
+<!--lint disable write-good-->
 Contributing to `nodejs-project-info` is fairly easy. This document shows you how to
 get the project, run all provided tests and generate a production-ready build.
+<!--lint enable write-good-->
 
 It also covers provided tasks that help you develop with `nodejs-project-info`.
 
@@ -44,9 +46,11 @@ This command installs everything which is required for building and testing the 
 
 `npm run watch` executes the build in watch mode.
 
-## Ensure code quality [`docker required`](docs/index.md)
+## Ensure code quality `docker required`
 
-`npm run codeclimate` executes the code quality checks
+`npm run lint` executes [markdownlint][markdownlint-url] and [remark][remark-url] checks
+
+`npm run codeclimate` executes the [Code Climate](docs/codeclimate.md) checks
 
 ## Contributing/Submitting changes
 
@@ -65,18 +69,22 @@ This command installs everything which is required for building and testing the 
 
   - Use one branch per fix/feature
 - Make your changes
-  - Make sure to provide a spec for unit tests.
+  - Make sure to provide a [spec for unit tests][jest-url].
   - Run your tests with <code>npm test</code>.
-  - Save integration time and run code quality checks locally with <code>npm run codeclimate</code>
+  - Save integration time and run code quality checks locally with `npm run codeclimate`
   - When all tests pass, everything's fine.
 - Commit your changes
-  - Please provide a git message that explains what you've done following the [conventional commits][commit-url] pattern.
-  - nodejs-project-info uses [generate-changelog](https://www.npmjs.com/package/generate-changelog), so please make sure your commits follow the [conventional commit][commit-url] pattern.
+  - Please provide a git message that explains what you've done
+    following the [conventional commits][commit-url] pattern.
+  - `nodejs-project-info` uses [conventional-changelog-cli](https://www.npmjs.com/package/conventional-changelog-cli).
   - Commit to the forked repository.
-  - Sign your commit.
+  - [Sign][sign-url] your commit.
 - Make a pull request
   - Make sure you send the PR to the <code>development</code> branch.
   - CI is watching you!
 
 [jest-url]: https://jestjs.io/
+[markdownlint-url]: https://www.npmjs.com/package/markdownlint
+[remark-url]: https://remark.js.org/
 [commit-url]: https://www.conventionalcommits.org
+[sign-url]: https://docs.github.com/en/authentication/managing-commit-signature-verification/signing-commits

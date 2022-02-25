@@ -1,24 +1,29 @@
 {
   "root": true,
   "parser": "@typescript-eslint/parser",
-  "plugins": ["prettier", "jest", "unicorn", "@typescript-eslint"],
+  "plugins": ["@typescript-eslint", "jest", "prettier", "unicorn"],
   "extends": [
+    "plugin:@typescript-eslint/recommended",
     "plugin:jest/recommended",
-    "plugin:unicorn/recommended",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:unicorn/recommended"
   ],
   "parserOptions": {
-    "ecmaVersion": 2020,
+    "ecmaVersion": "latest",
     "sourceType": "module",
-    "ecmaFeatures": {}
+    "ecmaFeatures": {
+    }
   },
   "env": {
-    "es2020": true,
-    "es6": true,
+    "es2022": true,
     "browser": false,
+    "node": true,
     "jest": true
   },
   "rules": {
+    "quotes": [
+      2, "single", { "avoidEscape": true }
+    ],
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "sort-imports": [
       "error",
@@ -30,5 +35,6 @@
       }
     ]
   },
-  "settings": {}
+  "settings": {
+  }
 }

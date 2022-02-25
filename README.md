@@ -1,33 +1,47 @@
-# NodeJS Project Information
+# Node.JS Project Information
 
-## [GitHub Action](https://github.com/features/actions) written in [TypeScript](http://www.typescriptlang.org/)
+## [GitHub Action][github-actions-url] written in [TypeScript][typescript-url]
 
 ### Provide package.json - [GitHub Action](https://github.com/features/actions)
 
-This action provides the _name_ and _version_ and the content of **package.json**, so your workflow can access it.
+This action provides the _name_, _version_ and the content of **package.json**, so your workflow can access it.
 
 [![License][license-image]][license-url]
 [![Issues][issues-image]][issues-url]
 
-[![Codacy Badge][codacy-imge]][codacy-url][![Code maintainability][code-maintainability-image]][code-maintainability-url] [![Code issues][code-issues-image]][code-issues-url] [![Code Technical Debt][code-tech-debt-image]][code-tech-debt-url]
+[![Code maintainability][code-maintainability-image]][code-maintainability-url]
+[![Code issues][code-issues-image]][code-issues-url]
+[![Code Technical Debt][code-tech-debt-image]][code-tech-debt-url]
 
-[![Main Language][language-image]][code-metric-url] [![Languages][languages-image]][code-metric-url] [![Code Size][code-size-image]][code-metric-url] [![Repo-Size][repo-size-image]][code-metric-url]
+[![Main Language][language-image]][code-metric-url]
+[![Languages][languages-image]][code-metric-url]
+[![Code Size][code-size-image]][code-metric-url]
+[![Repository Size][repo-size-image]][code-metric-url]
 
-|                                                                  |                                                                            | [![Release][release-image]][release-url]                                     |
+## Features
+
+- [TypeScript][typescript-url]
+- [Jest][jest-url] Unit Tests with Code Coverage
+- GitHub CI Integration (feature, development, master, release)
+- Code Quality via [Code Climate](./docs/codeclimate.md)
+
+<!-- lint disable maximum-line-length -->
+| GitHub                                                           | Coveralls                                                                  |                                                                              |
 | ---------------------------------------------------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| [![Release Build][release-build-image]][release-url]             |                                                                            | [![Release Version][release-image]][release-url]                             |
 | [![Master Build][master-build-image]][master-url]                | [![Master Coverage][master-coveralls-image]][master-coveralls-url]         | [![Master Version][master-version-image]][master-version-url]                |
 | [![Development Build][development-build-image]][development-url] | [![Test Coverage][development-coveralls-image]][development-coveralls-url] | [![Development Version][development-version-image]][development-version-url] |
-
+<!-- lint enable maximum-line-length -->
 ## Usage
 
 ```YML
     ...
     - name: nodejs project information
       id: projectinfo
-      uses: gregoranders/nodejs-project-info@v0.0.13
+      uses: gregoranders/nodejs-project-info@v0.0.14
     - name: create release action
       id: createrelease
-      uses: gregoranders/nodejs-create-release@v0.0.13
+      uses: gregoranders/nodejs-create-release@v0.0.14
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         PACKAGE_JSON: ${{ steps.projectinfo.outputs.context }}
@@ -58,10 +72,7 @@ outputs:
 [release-url]: https://github.com/gregoranders/nodejs-project-info/releases
 [master-url]: https://github.com/gregoranders/nodejs-project-info/tree/master
 [development-url]: https://github.com/gregoranders/nodejs-project-info/tree/development
-[repository-url]: https://github.com/gregoranders/nodejs-project-info
 [code-metric-url]: https://github.com/gregoranders/nodejs-project-info/search?l=TypeScript
-[travis-url]: https://travis-ci.org/gregoranders/nodejs-project-info
-[travis-image]: https://travis-ci.org/gregoranders/nodejs-project-info.svg?branch=master
 [license-url]: https://github.com/gregoranders/nodejs-project-info/blob/master/LICENSE
 [license-image]: https://img.shields.io/github/license/gregoranders/nodejs-project-info.svg
 [master-version-url]: https://github.com/gregoranders/nodejs-project-info/blob/master/package.json
@@ -88,5 +99,6 @@ outputs:
 [languages-image]: https://img.shields.io/github/languages/count/gregoranders/nodejs-project-info
 [code-size-image]: https://img.shields.io/github/languages/code-size/gregoranders/nodejs-project-info
 [repo-size-image]: https://img.shields.io/github/repo-size/gregoranders/nodejs-project-info
-[codacy-imge]: https://app.codacy.com/project/badge/Grade/ade2dc1495e942019cda4408f84ef8db
-[codacy-url]: https://www.codacy.com/manual/gregoranders/nodejs-project-info
+[typescript-url]: http://www.typescriptlang.org/
+[jest-url]: https://jestjs.io/
+[github-actions-url]: https://github.com/features/actions
