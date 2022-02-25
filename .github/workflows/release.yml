@@ -46,30 +46,23 @@ jobs:
       - name: npm run build
         run: |
           npm run build
-      - uses: actions/setup-node@v2
+      - name: code coverage
+        if: matrix.os == 'ubuntu-latest'
+        uses: coverallsapp/github-action@master
         with:
-          node-version: ${{ matrix.node-version }}
-          registry-url: 'https://npm.pkg.github.com'
-          scope: '@gregoranders'
-      - run: npm ci
-      - run: npm publish
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: ./test/coverage/lcov.info
+      - name: publish code coverage to code climate
+        if: matrix.os == 'ubuntu-latest'
+        uses: paambaati/codeclimate-action@v3.0.0
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: upload index.js
-        id: uploadmain
-        uses: gregoranders/nodejs-upload-asset@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
-          id: ${{ steps.createrelease.outputs.id }}
-          path: dist/index.js
-          name: index.js
-      - name: upload index.d.ts
-        id: uploadtype
-        uses: gregoranders/nodejs-upload-asset@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          coverageCommand: npm test
+          coverageLocations: |
+            ./test/coverage/lcov.info:lcov
+      - name: Publish Unit Test Results
+        uses: EnricoMi/publish-unit-test-result-action/composite@v1
         with:
-          id: ${{ steps.createrelease.outputs.id }}
-          path: dist/index.d.ts
-          name: index.d.ts
+          check_name: Unit Test Results node${{ matrix.node-version }}-${{ matrix.os }}
+          files: test/junit.xml
