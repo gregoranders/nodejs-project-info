@@ -61,8 +61,3 @@ jobs:
           coverageCommand: npm test
           coverageLocations: |
             ./test/coverage/lcov.info:lcov
-      - name: Publish Unit Test Results
-        uses: EnricoMi/publish-unit-test-result-action/composite@v1
-        with:
-          check_name: Unit Test Results node${{ matrix.node-version }}-${{ matrix.os }}
-          files: test/junit.xml
