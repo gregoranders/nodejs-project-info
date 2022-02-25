@@ -1,6 +1,6 @@
 {
   "name": "nodejs-project-info",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "NodeJS Project Information",
   "main": "./dist/index.js",
   "scripts": {
@@ -19,11 +19,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gregoranders/nodejs-project-info.git"
+    "url": "https://github.com/gregoranders/nodejs-project-info.git"
   },
   "publishConfig": {
-    "access": "public",
-    "registry": "https://npm.pkg.github.com"
+    "access": "public"
   },
   "keywords": [
     "github",
