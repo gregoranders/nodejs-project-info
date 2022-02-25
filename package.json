@@ -21,6 +21,10 @@
     "type": "git",
     "url": "git+https://github.com/gregoranders/nodejs-project-info.git"
   },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
+  },
   "keywords": [
     "github",
     "action",
