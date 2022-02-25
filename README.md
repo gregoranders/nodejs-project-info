@@ -28,7 +28,7 @@ This action provides the _name_, _version_ and the content of **package.json**, 
 <!-- lint disable maximum-line-length -->
 | GitHub                                                           | Coveralls                                                                  |                                                                              |
 | ---------------------------------------------------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| [![Release Build][release-build-image]][release-url]             |                                                                            | [![Release][release-image]][release-url]                                     |
+| [![Release Build][release-build-image]][release-url]             |                                                                            | [![Release Version][release-image]][release-url]                             |
 | [![Master Build][master-build-image]][master-url]                | [![Master Coverage][master-coveralls-image]][master-coveralls-url]         | [![Master Version][master-version-image]][master-version-url]                |
 | [![Development Build][development-build-image]][development-url] | [![Test Coverage][development-coveralls-image]][development-coveralls-url] | [![Development Version][development-version-image]][development-version-url] |
 <!-- lint enable maximum-line-length -->
