@@ -29,3 +29,4 @@ exclude_patterns:
   - '**/dist'
   - '**/test'
   - '**/node_modules'
+  - 'CHANGELOG.md'
