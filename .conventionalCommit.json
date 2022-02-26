@@ -35,6 +35,12 @@
     }
   },
   "scopes": {
+    "dependencies": {
+      "description": "Changes which affect dependencies"
+    },
+    "devdependencies": {
+      "description": "Changes which affect development dependencies"
+    },
     "codeclimate": {
       "description": "Changes which affect Code Climate integration"
     },
