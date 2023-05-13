@@ -10,7 +10,7 @@
     "prebuild": "eslint ./src/**/*.ts && tsc --noEmit --project ./",
     "build": "cross-env NODE_ENV=production ncc build ./src/index.ts -m -o ./dist/",
     "lint": "markdownlint --config .mdlrc . && remark --frail --rc-path .remarkrc-full.mjs .",
-    "pretest": "rimraf ./test/*",
+    "pretest": "rimraf --glob ./test/*",
     "test": "jest",
     "watch": "tsc -w --project ./",
     "prepare": "husky install",
