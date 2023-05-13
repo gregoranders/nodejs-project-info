@@ -51,6 +51,7 @@ export const run = async () => {
     core.setOutput('name', package_.name);
     core.setOutput('version', package_.version);
     core.setOutput('context', buffer);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: Error | any) {
     core.setFailed(error);
   }
