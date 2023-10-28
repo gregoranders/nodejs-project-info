@@ -6,7 +6,7 @@ updates:
     schedule:
       interval: 'weekly'
     labels:
-      - 'npm dependencies'
+      - 'github dependencies'
     commit-message:
       prefix: 'github-actions'
     assignees:
